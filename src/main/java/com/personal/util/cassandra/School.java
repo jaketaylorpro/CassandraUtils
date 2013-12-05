@@ -9,16 +9,18 @@ import java.util.UUID;
  * Time: 11:17 PM
  * To change this template use File | Settings | File Templates.
  */
-@CassandraColumnFamily(keyspaceName = "cql_test",columnFamilyName = "school")
+@CassandraColumnFamily(keyspaceName = "cql_test1",columnFamilyName = "school")
 public class School extends CassandraColumnFamilyBase
 {
-	@CassandraId(name = "school_id")
-	private UUID id;
+
+	@CassandraId(name = "school_id" ,order = 1)
+	protected UUID id;
 	@CassandraColumn(name="name")
-	private String name;
+	protected String name;
 
 	public School(UUID id)
 	{
+		super();
 		this.id=id;
 	}
 

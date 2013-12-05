@@ -1,8 +1,6 @@
 package com.personal.util.cassandra;
 
 import com.datastax.driver.core.*;
-import com.datastax.driver.core.querybuilder.Batch;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
@@ -21,6 +19,10 @@ public class CQL3Operations
 	public static Cluster getLocalCluster()
 	{
 		return Cluster.builder().addContactPoint("127.0.0.1").build();
+	}
+	public static Session connectToLocalCluster()
+	{
+		return Cluster.builder().addContactPoint("127.0.0.1").build().connect();
 	}
 	public static void debugMetadata(Cluster cluster)
 	{
@@ -71,6 +73,6 @@ public class CQL3Operations
 		datastaxLog.addAppender(new ConsoleAppender(new SimpleLayout()));
 		Logger log=Logger.getLogger(CQL3Operations.class);
 		log.addAppender(new ConsoleAppender(new SimpleLayout()));
-		testCreateSchool("durmstrang");
+		testCreateSchool("school2");
 	}
 }
