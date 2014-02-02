@@ -35,13 +35,13 @@ public class CassandraOperations
 	{
 		try
 		{
-			School school=new School("testschool2");
+			School school=new School("testschool3");
 			school.save();
 			log.trace(String.format("saved school: %s:%s",school.getId().toString(),school.getName()));
 		}
 		catch (CassandraException e)
 		{
-			log.error("there was an error saving testschool2",e);
+			log.error("there was an error saving testschool3",e);
 		}
 	}
 	public static void main(String[] args)
@@ -53,8 +53,22 @@ public class CassandraOperations
 		Logger comLog=Logger.getLogger("com");
 		comLog.addAppender(new ConsoleAppender(new SimpleLayout()));
 		comLog.setLevel(Level.TRACE);
-		School.initSession(CQL3Operations.connectToLocalCluster());
+		CassandraColumnFamilyMetadata.initSession("test",CQL3Operations.connectToLocalCluster());
 		//saveTest();
-		loadTest();
+		//loadTest();
+		userTest();
+	}
+	public static void userTest()
+	{
+		try
+		{
+			School school=new School("testschool3");
+			school.load();
+			log.trace(String.format("saved school: %s:%s",school.getId().toString(),school.getName()));
+		}
+		catch (CassandraException e)
+		{
+			log.error("there was an error saving testschool3",e);
+		}
 	}
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
  * Time: 11:17 PM
  * To change this template use File | Settings | File Templates.
  */
-@CassandraColumnFamily(keyspaceName = "cql_test1",columnFamilyName = "school")
+@CassandraColumnFamily(domain="test",keyspaceName = "cql_test1",columnFamilyName = "school")
 public class School extends CassandraColumnFamilyBase
 {
 
@@ -18,6 +18,11 @@ public class School extends CassandraColumnFamilyBase
 	@CassandraColumn(name="name")
 	protected String name;
 
+	public School()
+	{
+		super();
+		this.id=UUID.randomUUID();
+	}
 	public School(UUID id)
 	{
 		super();
@@ -26,6 +31,7 @@ public class School extends CassandraColumnFamilyBase
 
 	public School(String name)
 	{
+		super();
 		this.id=UUID.randomUUID();
 		this.name=name;
 	}
